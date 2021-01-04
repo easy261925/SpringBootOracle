@@ -1,11 +1,7 @@
 package com.easycc.project.service;
 
-import com.easycc.project.common.utils.ResponseResult;
 import com.easycc.project.entity.SysUser;
 import com.baomidou.mybatisplus.extension.service.IService;
-import org.apache.http.HttpRequest;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * <p>

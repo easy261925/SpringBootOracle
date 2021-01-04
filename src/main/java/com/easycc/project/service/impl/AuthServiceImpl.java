@@ -11,7 +11,6 @@ import com.easycc.project.config.JwtConfig;
 import com.easycc.project.entity.SysUser;
 import com.easycc.project.mapper.SysUserMapper;
 import com.easycc.project.service.AuthService;
-import com.easycc.project.service.SysUserService;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

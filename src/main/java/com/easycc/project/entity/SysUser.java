@@ -1,10 +1,9 @@
 package com.easycc.project.entity;
 
-import com.easycc.project.entity.Base;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.annotation.IdType;
+
 import java.util.Date;
-import com.baomidou.mybatisplus.annotation.TableId;
+
 import com.baomidou.mybatisplus.annotation.TableField;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -13,7 +12,7 @@ import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author cc
@@ -22,7 +21,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @TableName("SYS_USER")
-@ApiModel(value="SysUser对象", description="")
+@ApiModel(value = "SysUser对象", description = "")
 public class SysUser extends Base {
 
     private static final long serialVersionUID = 1L;

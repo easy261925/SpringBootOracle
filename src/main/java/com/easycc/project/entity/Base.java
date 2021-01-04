@@ -1,7 +1,6 @@
 package com.easycc.project.entity;
 
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.models.auth.In;
 import lombok.Data;
 
 import java.util.Date;

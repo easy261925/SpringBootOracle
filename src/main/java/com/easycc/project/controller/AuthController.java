@@ -5,11 +5,8 @@ import com.easycc.project.common.utils.ResponseResult;
 import com.easycc.project.common.utils.ResultCode;
 import com.easycc.project.entity.SysUser;
 import com.easycc.project.service.AuthService;
-import com.easycc.project.service.SysUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.apache.catalina.User;
-import org.apache.http.HttpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 @Api(tags = "登录、退出、获取用户信息")
 public class AuthController {
 
-    @Resource
+    @Autowired
     private AuthService authService;
 
     @PostMapping("/login")
