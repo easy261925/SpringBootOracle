@@ -5,6 +5,8 @@ import com.easycc.project.common.utils.ResponseResult;
 import com.easycc.project.common.utils.ResultCode;
 import com.easycc.project.entity.SysUser;
 import com.easycc.project.service.SysUserService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.catalina.User;
 import org.apache.http.HttpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,23 +20,27 @@ import javax.servlet.http.HttpServletRequest;
  * @date 2021-01-04-下午2:46
  */
 @RestController
-@RequestMapping("/login")
-public class LoginController {
+@RequestMapping("/auth")
+@Api(tags = "登录、退出、获取用户信息")
+public class AuthController {
 
     @Autowired
     private SysUserService sysUserService;
 
     @PostMapping("/login")
+    @ApiOperation("登录")
     public ResponseResult login(HttpServletRequest request, @RequestBody SysUser sysUser) {
         return sysUserService.login(request, sysUser);
     }
 
     @PostMapping("/logout")
+    @ApiOperation("退出")
     public ResponseResult logout(HttpServletRequest request) {
         return sysUserService.logout(request);
     }
 
     @GetMapping("/getUserInfo")
+    @ApiOperation("获取用户信息")
     public ResponseResult getUserInfo(HttpServletRequest request) {
         SysUser userInfo = sysUserService.getUserInfo(request);
         if (StringUtils.isEmpty(userInfo)) {

@@ -27,7 +27,6 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
                              Object handler) throws Exception {
         // 地址过滤
         String uri = request.getRequestURI();
-        log.info("uri______" + uri);
         if (uri.contains("/static")) {
             return true;
         }
@@ -52,7 +51,6 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
         }
         // Token 验证
         String token = request.getHeader(jwtConfig.getHeader());
-        log.info("token______" + token);
         if (StringUtils.isEmpty(token)) {
             token = request.getParameter(jwtConfig.getHeader());
         }
