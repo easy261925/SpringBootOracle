@@ -27,7 +27,7 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
                              Object handler) throws Exception {
         // 地址过滤
         String uri = request.getRequestURI();
-
+        log.info("uri______" + uri);
         if (uri.contains("/static")) {
             return true;
         }
@@ -52,12 +52,13 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
         }
         // Token 验证
         String token = request.getHeader(jwtConfig.getHeader());
+        log.info("token______" + token);
         if (StringUtils.isEmpty(token)) {
             token = request.getParameter(jwtConfig.getHeader());
         }
         if (StringUtils.isEmpty(token)) {
             System.out.println(uri);
-            throw new CustomException(ResultCode.INVALID, "token 不能为空");
+            throw new CustomException(ResultCode.INVALID, "token 失效，请重新登录");
         }
         if (!redisUtil.hasKey(token)) {
             Claims claims = jwtConfig.getTokenClaim(token);

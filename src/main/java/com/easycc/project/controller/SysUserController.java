@@ -30,7 +30,7 @@ public class SysUserController {
     @GetMapping("/user")
     public ResponseResult getAllUser() {
         List<SysUser> users = sysUserService.list();
-        return ResponseResult.ok().data("list", users);
+        return ResponseResult.ok().data("data", users);
     }
 }
 
