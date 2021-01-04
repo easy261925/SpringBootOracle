@@ -27,12 +27,12 @@ public class ProjectApplicationTests {
 
         gc.setAuthor("cc");
         gc.setOpen(false); //生成后是否打开资源管理器
-        gc.setFileOverride(false); //重新生成时文件是否覆盖
+        gc.setFileOverride(true); //重新生成时文件是否覆盖
 
-        //UserServie
+        //service
         gc.setServiceName("%sService");    //去掉Service接口的首字母I
 
-        gc.setIdType(IdType.ID_WORKER_STR); //主键策略
+        gc.setIdType(IdType.ASSIGN_ID); //主键策略
         gc.setDateType(DateType.ONLY_DATE);//定义生成的实体类中日期类型
         gc.setSwagger2(true);//开启Swagger2模式
 
@@ -54,18 +54,28 @@ public class ProjectApplicationTests {
         pc.setController("controller");
         pc.setEntity("entity");
         pc.setService("service");
+        pc.setServiceImpl("service.impl");
         pc.setMapper("mapper");
         mpg.setPackageInfo(pc);
 
         // 5、策略配置
         StrategyConfig strategy = new StrategyConfig();
 
-        strategy.setInclude("user");
+        strategy.setInclude("USER");
 
         strategy.setNaming(NamingStrategy.underline_to_camel);//数据库表映射到实体的命名策略
         strategy.setTablePrefix(pc.getModuleName() + "_"); //生成实体时去掉表前缀
 
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);//数据库表字段映射到实体的命名策略
+
+        strategy.setSuperEntityColumns("id");
+        strategy.setSuperEntityColumns("CREATE_TIME");
+        strategy.setSuperEntityColumns("UPDATE_TIME");
+        strategy.setSuperEntityColumns("BAN");
+        strategy.setSuperEntityColumns("DELETED");
+        strategy.setSuperEntityColumns("VERSION");
+
+        strategy.setSuperEntityClass("com.easycc.project.entity.Base");
         strategy.setEntityLombokModel(true); // lombok 模型 @Accessors(chain = true) setter链式操作
 
         strategy.setRestControllerStyle(true); //restful api风格控制器

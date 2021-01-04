@@ -19,7 +19,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/elasticsearch")
-@Api("ElasticSearch")
+@Api(tags = "ElasticSearch")
 public class ElasticSearchController {
 
     @PostMapping("/updateEsRemoteExtDict")
