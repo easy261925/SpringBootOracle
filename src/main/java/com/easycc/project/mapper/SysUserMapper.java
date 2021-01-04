@@ -1,6 +1,6 @@
 package com.easycc.project.mapper;
 
-import com.easycc.project.entity.User;
+import com.easycc.project.entity.SysUser;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author cc
  * @since 2021-01-04
  */
-public interface UserMapper extends BaseMapper<User> {
+public interface SysUserMapper extends BaseMapper<SysUser> {
 
 }

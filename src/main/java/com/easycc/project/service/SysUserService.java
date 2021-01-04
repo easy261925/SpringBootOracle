@@ -1,6 +1,6 @@
 package com.easycc.project.service;
 
-import com.easycc.project.entity.User;
+import com.easycc.project.entity.SysUser;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author cc
  * @since 2021-01-04
  */
-public interface UserService extends IService<User> {
+public interface SysUserService extends IService<SysUser> {
 
 }

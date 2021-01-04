@@ -1,8 +1,8 @@
 package com.easycc.project.service.impl;
 
-import com.easycc.project.entity.User;
-import com.easycc.project.mapper.UserMapper;
-import com.easycc.project.service.UserService;
+import com.easycc.project.entity.SysUser;
+import com.easycc.project.mapper.SysUserMapper;
+import com.easycc.project.service.SysUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2021-01-04
  */
 @Service
-public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
+public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements SysUserService {
 
 }

@@ -21,9 +21,9 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-@TableName("USER")
-@ApiModel(value="User对象", description="")
-public class User extends Base {
+@TableName("SYS_USER")
+@ApiModel(value="SysUser对象", description="")
+public class SysUser extends Base {
 
     private static final long serialVersionUID = 1L;
 
