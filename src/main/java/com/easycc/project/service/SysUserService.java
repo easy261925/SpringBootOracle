@@ -17,9 +17,4 @@ import javax.servlet.http.HttpServletRequest;
  */
 public interface SysUserService extends IService<SysUser> {
 
-    ResponseResult login(HttpServletRequest request, SysUser sysUser);
-
-    SysUser getUserInfo(HttpServletRequest request);
-
-    ResponseResult logout(HttpServletRequest request);
 }

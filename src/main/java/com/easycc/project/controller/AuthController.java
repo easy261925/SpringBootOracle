@@ -4,6 +4,7 @@ import com.easycc.project.common.Exception.CustomException;
 import com.easycc.project.common.utils.ResponseResult;
 import com.easycc.project.common.utils.ResultCode;
 import com.easycc.project.entity.SysUser;
+import com.easycc.project.service.AuthService;
 import com.easycc.project.service.SysUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -24,25 +26,25 @@ import javax.servlet.http.HttpServletRequest;
 @Api(tags = "登录、退出、获取用户信息")
 public class AuthController {
 
-    @Autowired
-    private SysUserService sysUserService;
+    @Resource
+    private AuthService authService;
 
     @PostMapping("/login")
     @ApiOperation("登录")
     public ResponseResult login(HttpServletRequest request, @RequestBody SysUser sysUser) {
-        return sysUserService.login(request, sysUser);
+        return authService.login(request, sysUser);
     }
 
     @PostMapping("/logout")
     @ApiOperation("退出")
     public ResponseResult logout(HttpServletRequest request) {
-        return sysUserService.logout(request);
+        return authService.logout(request);
     }
 
     @GetMapping("/getUserInfo")
     @ApiOperation("获取用户信息")
     public ResponseResult getUserInfo(HttpServletRequest request) {
-        SysUser userInfo = sysUserService.getUserInfo(request);
+        SysUser userInfo = authService.getUserInfo(request);
         if (StringUtils.isEmpty(userInfo)) {
             throw new CustomException(ResultCode.INVALID, "令牌失效，请重新登录");
         } else {
