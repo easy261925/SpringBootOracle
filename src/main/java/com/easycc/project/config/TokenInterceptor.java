@@ -58,7 +58,7 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
         }
         if (StringUtils.isEmpty(token)) {
             System.out.println(uri);
-            throw new CustomException(ResultCode.INVALID, "token 失效，请重新登录");
+            throw new CustomException(ResultCode.INVALID, "令牌失效，请重新登录");
         }
         if (!redisUtil.hasKey(token)) {
             Claims claims = jwtConfig.getTokenClaim(token);
@@ -70,7 +70,7 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
                     redisUtil.del(tmp);
                 }
             }
-            throw new CustomException(ResultCode.INVALID, "token 失效，请重新登录");
+            throw new CustomException(ResultCode.INVALID, "令牌失效，请重新登录");
         }
         Claims claims = jwtConfig.getTokenClaim(token);
         if (claims == null || jwtConfig.isTokenExpired(claims.getExpiration())) {
