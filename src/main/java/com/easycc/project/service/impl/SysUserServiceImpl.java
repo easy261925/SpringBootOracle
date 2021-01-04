@@ -1,8 +1,8 @@
 package com.easycc.project.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.easycc.project.common.Exception.CustomException;
+import com.easycc.project.common.utils.MD5;
 import com.easycc.project.common.utils.RedisUtil;
 import com.easycc.project.common.utils.ResponseResult;
 import com.easycc.project.common.utils.ResultCode;
@@ -12,8 +12,6 @@ import com.easycc.project.mapper.SysUserMapper;
 import com.easycc.project.service.SysUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import io.jsonwebtoken.Claims;
-import io.swagger.models.auth.In;
-import org.apache.http.HttpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -47,7 +45,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 
         QueryWrapper<SysUser> sysUserQueryWrapper = new QueryWrapper<>();
         sysUserQueryWrapper.eq("username", sysUser.getUsername())
-                .eq("password", sysUser.getPassword())
+                .eq("password", MD5.encrypt(sysUser.getPassword()))
                 .eq("ban", 0);
         SysUser currentUser = baseMapper.selectOne(sysUserQueryWrapper);
         if (currentUser != null) {
