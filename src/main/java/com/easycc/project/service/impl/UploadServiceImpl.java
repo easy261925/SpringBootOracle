@@ -94,19 +94,29 @@ public class UploadServiceImpl implements UploadService {
         SysUser userInfo = authService.getUserInfo(request);
 
         if (null != userInfo) {
+            String filePath = env.getProperty("local.uploadPath") + "ESRemote";
             if (null != filesId && filesId.length > 0) {
+                // 删除本地文件
+                QueryWrapper<ProjectFile> query = new QueryWrapper<>();
+                query.notIn("ID", filesId);
+                List<ProjectFile> list = projectFileService.list(query);
+                if (list.size() > 0) {
+                    list.forEach(item -> {
+                        this.deleteFolder(filePath + "/" + item.getFilename());
+                    });
+                }
+                // 删除数据库中数据
                 QueryWrapper<ProjectFile> projectFileQueryWrapper = new QueryWrapper<>();
                 projectFileQueryWrapper.notIn("ID", filesId);
                 projectFileService.remove(projectFileQueryWrapper);
-
             }
+            // 添加附件
             if (attachments.size() > 0) {
                 attachments.forEach(item -> {
                     // 获取指定文件夹
                     String dirUrl = "ESRemote/";
                     if ("remoteExtDic.txt".equals(item.getOriginalFilename()) || "remoteBanDic.txt".equals(item.getOriginalFilename())) {
                         try {
-//                            this.deleteFolder(dirUrl + item.getOriginalFilename());
                             ProjectFile projectFile = this.saveFile(item, dirUrl, request);
                             projectFile.setType("ES");
                             projectFile.setHandlerId(userInfo.getId());
@@ -121,6 +131,14 @@ public class UploadServiceImpl implements UploadService {
                     }
                 });
 
+            }
+            // 全部删除
+            if (null == filesId && attachments.size() == 0) {
+                QueryWrapper<ProjectFile> projectFileQueryWrapper = new QueryWrapper<>();
+                projectFileQueryWrapper.eq("DELETED", 0);
+                projectFileService.remove(projectFileQueryWrapper);
+
+                this.deleteFolder(filePath);
             }
             return true;
         }
